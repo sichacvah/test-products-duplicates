@@ -3,7 +3,10 @@ import fetch from 'node-fetch'
 
 const fetchPage = (baseUrl, config, page = 1) => {
   console.log('PAGE_FETCHING', page)
-  const queryString = `sid=${config.sid}&tid=${config.tid}&per_page=${config.per_page}&page=${page}`
+  let queryString = `sid=${config.sid}&tid=${config.tid}&per_page=${config.per_page}&page=${page}`
+  if (config.q) {
+    queryString = `${queryString}&q=${config.q}`
+  }
   const url = `${baseUrl}?${queryString}`
   return fetch(url, {
     method: 'get',
@@ -34,6 +37,7 @@ export const main = (config) => {
   const url = 'https://' + config.host + config.path
   const fetchAndExtract = (pageNumber = 1) => {
     return fetchPage(url, config, pageNumber).then(page => {
+      console.log('PAGE', JSON.stringify(page, null, 2))
       const ids = extractIds(page.products)
       duplicates.push(...findDuplicates(idsSet, ids))
       addToIds(idsSet, ids)
