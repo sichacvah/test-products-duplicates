@@ -25,6 +25,7 @@ export default {
   path: '/v2/products',
   per_page: 24,
   sid: 12,
-  tid: 43500
+  tid: 43500,
+  q: null
 }
 ```
