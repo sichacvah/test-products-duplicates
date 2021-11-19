@@ -5,7 +5,7 @@
 3. `npm run-script run:script` или `yarn run:stript`
 
 Пример config.js файл:  
-```
+```js
 export default {
   headers: {
     'Accept-Encoding': 'gzip',
