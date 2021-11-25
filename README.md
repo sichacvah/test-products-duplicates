@@ -26,6 +26,6 @@ export default {
   per_page: 24,
   sid: 12,
   tid: 43500,
-  q: null
+  q: 'молоко'
 }
 ```

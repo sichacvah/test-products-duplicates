@@ -3,11 +3,15 @@ import fetch from 'node-fetch'
 
 const fetchPage = (baseUrl, config, page = 1) => {
   console.log('PAGE_FETCHING', page)
-  let queryString = `sid=${config.sid}&tid=${config.tid}&per_page=${config.per_page}&page=${page}`
+  let queryString = `sid=${config.sid}&per_page=${config.per_page}&page=${page}`
+  if (config.tid) {
+    queryString = `${queryString}&tid=${config.tid}`
+  }
   if (config.q) {
     queryString = `${queryString}&q=${config.q}`
   }
   const url = `${baseUrl}?${queryString}`
+  console.log('URL', url)
   return fetch(url, {
     method: 'get',
     headers: config.headers
